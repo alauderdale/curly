@@ -7,9 +7,7 @@
 						Tags /
 						= @tag
 			-else
-				.page-header.double-padding-top
-					%h3.no-margin-bottom
-						Popular Tips
+				= render :partial => 'shot_nav', :locals => {:c => @shots}
 			-@shots.in_groups_of(4,false) do |s|
 				-s.each do |c| 
 					= render :partial => 'shared/shot_thumb', :locals => {:c => c}

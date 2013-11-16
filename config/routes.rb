@@ -14,6 +14,7 @@ Rails3BootstrapDeviseCancan::Application.routes.draw do
   end
 
   devise_for :shots
+  match 'shots/following', to: 'shots#following'
   resources :shots do
     resources :comments
     resources :rebounds

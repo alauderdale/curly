@@ -57,6 +57,15 @@ class ShotsController < ApplicationController
     @shot = Shot.find(params[:id])
   end
 
+  def following
+    if current_user
+    #following and current user shots
+      @shots = Shot.where(:user_id=>[*current_user.followed_users, current_user.id]).page(params[:page]).order('created_at DESC')
+    else
+      redirect_to root_path, :alert => "Create an account to view this section"
+    end
+  end
+
   def update_shot
     # Find object using form parameters
     @shot = Shot.find(params[:id])
