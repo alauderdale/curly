@@ -12,3 +12,7 @@
 				-s.each do |c| 
 					= render :partial => 'shared/shot_thumb', :locals => {:c => c}
 			= will_paginate @shots 
+			-if @shots.count == 0
+				%h2.muted
+					You're not following anyone yet!
+					= link_to 'Browse Popular Tips', shots_path

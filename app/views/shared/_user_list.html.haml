@@ -15,7 +15,7 @@
 							-else
 								tips
 							= user.followers.count
-							-if user.followers.count <= 1
+							-if user.followers.count == 1
 								Follower
 							-else
 								Followers

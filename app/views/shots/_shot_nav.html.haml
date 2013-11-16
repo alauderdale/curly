@@ -1,8 +1,4 @@
 .page-header.double-padding-top
 	%ul.inline
-		%li.no-margin-bottom{:class => "class"}
-			=link_to shots_path do 
-				Popular
-		%li.no-margin-bottom
-			=link_to shots_following_path do
-				Following
+		= nav_link 'Following', shots_following_path
+		= nav_link 'Popular', shots_path

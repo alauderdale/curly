@@ -291,6 +291,15 @@ h6 {
 }
 
 //links
+li{
+  &.current{
+    a{
+      color:black!important;
+      font-weight:bold;
+    }
+  }
+}
+
 
 a{
   color:$link-color!important;
