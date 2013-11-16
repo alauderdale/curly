@@ -1,0 +1,32 @@
+.container.double-padding-top
+  .row
+    .span12
+      .media.margin-bottom
+        .media-body.margin-bottom
+          %h4.media-heading 
+            Editing
+            %span.muted
+              = @shot.title
+        .clearfix
+= render :partial => 'shared/shot_audio', :locals => {:shot => @shot}
+.container.double-padding-top
+  .row
+    .span12
+      = form_for(:shot, :url => {:action => 'update_shot', :id => @shot.id}) do |f|
+        .field
+          = f.label 'title'
+          = f.text_field :title, :required => true
+        .field
+          = f.label 'description'
+          = f.text_area :description, :rows => 5
+        .field
+          %label
+            Tags
+          = f.text_field :tag_list
+        .field
+          %label
+            Image
+          = f.file_field :shot_image
+        .form-buttons
+          = submit_tag("Update Groove", :class=>"btn")
+          = link_to("Cancel", {:action => 'show'}, :class => 'btn')

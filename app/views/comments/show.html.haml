@@ -1,0 +1,18 @@
+- div_for comment do
+  .media.margin-bottom
+    = link_to (@shot.user), :class => "pull-left" do 
+      %img.media-object.avatar-med{:src => "#{@shot.user.avatar.url(:thumb)}"}
+    .media-body.margin-bottome
+      %p.no-margin-bottom
+        %strong
+          = link_to (@shot.user) do
+            = @shot.user.name
+      %p.no-margin-bottom
+        = h(comment.body)
+      %p.muted
+        %small
+          = comment.created_at.strftime("%B %d, %Y")
+
+  = link_to 'Edit', edit_shot_comment_path(@shot, comment)
+  |
+  \#{link_to 'Delete', shot_comment_path(@shot, comment), :confirm => 'Are you sure?', :method => :delete}

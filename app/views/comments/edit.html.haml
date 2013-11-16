@@ -1,0 +1,9 @@
+.container.double-padding-top
+	.row
+		.span12
+			%h5 Edit comment
+			= form_for([:shot, @comment]) do |f|
+				.field
+					= f.text_area :body, :rows => "5"
+					%br
+					= submit_tag("Update Comment", :class=>"btn")

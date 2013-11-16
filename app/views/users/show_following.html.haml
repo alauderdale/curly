@@ -1,0 +1,12 @@
+.container.double-padding-top
+	.row
+		.span12
+			= render :partial => 'shared/breadcrumb', :locals => {:item => @user, :item_title =>@user.name, :title => @title}
+
+
+			-if @user.followed_users.count == 0
+				%p.muted
+					= @user.name
+					Is not following anyone
+			- @user.followed_users.each do |u|
+				= render :partial => 'shared/user_list', :locals => {:user => u}

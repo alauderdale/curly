@@ -1,0 +1,10 @@
+.container.double-padding-top
+	.row
+		.span12
+			%h1
+				New Tip
+
+			= form_for(:shot, :url => {:action => 'create'}, :html => { :multipart => true }) do |f| 
+				= render(:partial => 'form', :locals => {:f => f})
+				.form-buttons
+					= submit_tag("Publish Tip", :class=>"btn btn-primary") 

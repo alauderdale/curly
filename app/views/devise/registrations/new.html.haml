@@ -1,0 +1,17 @@
+.container.double-padding-top
+  .row
+    .span12.double-margin-bottom
+      %h2 Sign up for KLIPZ
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical',:multipart => true }) do |f|
+        = f.error_notification
+        = display_base_errors resource
+        = f.input :name, :autofocus => true
+        = f.input :email, :required => true
+        = f.input :password, :required => true
+        = f.input :password_confirmation, :required => true
+        = f.input :bio, :placeholder =>"a little about you..."
+        %label
+          User Avatar
+        = f.file_field :avatar
+        = f.button :submit, 'Sign up', :class => 'btn'
+      = render "devise/shared/links"

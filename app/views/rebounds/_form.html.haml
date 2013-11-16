@@ -1,0 +1,19 @@
+:javascript
+  jQuery(function ($) {
+    $("a").tooltip()
+  });
+
+.field
+  = f.label 'title'
+  = f.text_field :title, :required => true
+.field
+  = f.label 'description'
+  = f.text_area :description, :rows => 5
+.field
+  = f.file_field :shot_image
+.field
+  %label
+    %a.left{"rel"=>"tooltip" ,  "data-original-title"=>"Seporate tags by commas"}
+      %i.icon-question-sign
+    Tags
+  = f.text_field :tag_list

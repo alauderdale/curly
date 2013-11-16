@@ -1,0 +1,12 @@
+.page.delete
+  %h2
+    Delete Shot
+
+  = form_for(:shot, :url => {:action => 'destroy_shot', :id => @shot.id}) do |f|
+    %p
+      Are you sure you want to permanently delete this shot?
+    %p.refrence-name
+      Shot Name:
+      = @shot.title
+    .form-buttons
+      = submit_tag("Delete Shot")

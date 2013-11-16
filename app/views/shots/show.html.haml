@@ -1,0 +1,57 @@
+%section.double-margin-bottom
+  .container
+    .row
+      .span5
+        %p.no-margin-bottom
+          -if @shot.description.blank?
+            %span.muted
+              No Description
+          -else
+            =@shot.description
+        .clearfix.margin-bottom
+        -if @shot.reverse_rebounds.count > 0
+          .well
+            %h5.no-margin-bottom
+              This shot is a rebound of
+            -@shot.reverse_rebounds.each do |r|
+              %h6.no-margin-bottom
+                = link_to (r.from_shot) do
+                  =r.from_shot.title
+        .clearfix
+        .comments
+          .page-header
+            - if @shot.comments.count == 1
+              %h2 
+                = @shot.comments.count
+                Comment
+            - else
+              %h2
+                = @shot.comments.count
+                Comments
+          = render :partial => @shot.comments
+          - if current_user.present?
+            %h5
+              Add a new comment
+            = form_for([@shot, @shot.comments.build]) do |f|
+              .field
+                = f.text_area :body, :rows => 9, :required => true, :style=>"width:100%;"
+              = submit_tag("Post comment", :class=>"btn btn-primary")
+      .span6.offset1
+        = render :partial => 'shared/shot_controls', :locals => {:shot => @shot} 
+       
+
+#delete.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel 
+      Delete Shot
+  .modal-body
+    %p
+      Are you sure you want to permanently delete this shot?
+    %p
+      Shot Name:
+      = @shot.title
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancel
+    = form_for(:shot, :url => {:action => 'destroy_shot', :id => @shot.id}, :html => {:class => "display-inline"}) do |f|
+      = submit_tag("Delete Shot", :class=>"btn")

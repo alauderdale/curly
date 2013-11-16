@@ -1,0 +1,23 @@
+.container.double-padding-top
+  .row
+    .span12
+      .hero-unit
+        %h2.margin-bottom
+          Welcome to Curly Girl
+        %p
+          A network for people with curly hair. Publish tips and tricks o keep your hair healthy and happy
+        .btn-group
+          %a.btn.btn-large.btn-primary{:href=>"#{new_user_registration_path}"}
+            Sign Up
+        .btn-group
+          = link_to (new_user_session_path) , :class=>'btn btn-large' do
+            Login
+      .row
+        .span12
+          .page-header
+            %h3.no-margin-bottom
+              Popular Tips
+      .row
+        -@shots.each do |c| 
+          = render :partial => 'shared/shot_thumb', :locals => {:c => c}
+      = will_paginate @shots 

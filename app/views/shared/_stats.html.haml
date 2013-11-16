@@ -1,0 +1,22 @@
+%div
+  .pull-left.margin-right
+    =link_to (following_user_path(@user)) do
+      %h1.no-margin-bottom
+        %strong
+          = @user.followed_users.count
+      %p
+        Following
+  .pull-left.margin-right
+    =link_to (followers_user_path(@user)) do
+      %h1.no-margin-bottom
+        %strong
+          = @user.followers.count
+      %p
+        Followers
+  .pull-left
+    =link_to(:action =>"likes", :controller=>"users", :id=>@user.id) do
+      %h1.no-margin-bottom
+        %strong
+          = @likes.count
+      %p
+        Likes

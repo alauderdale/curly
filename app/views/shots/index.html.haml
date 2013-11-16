@@ -1,0 +1,18 @@
+.container
+	.row
+		.span12
+			.page-header
+				%h3.no-margin-bottom
+					Popular Tips
+	.row
+		.span12
+			-if params[:tag]
+				.page-header.double-padding-top
+					%h3
+						Tags /
+						= @tag
+			-@shots.in_groups_of(4,false) do |s|
+				.row
+					-s.each do |c| 
+						= render :partial => 'shared/shot_thumb', :locals => {:c => c}
+			= will_paginate @shots 

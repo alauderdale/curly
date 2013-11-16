@@ -1,0 +1,38 @@
+.container.double-padding-top
+  .span12
+    .row
+      .span12
+        .row
+          .span8
+            .media.margin-bottom
+              = link_to (@user), :class => "pull-left" do 
+                %img.media-object.avatar-lg{:src => "#{@user.avatar.url(:medium)}"}
+              .media-body
+                %h4.media-heading 
+                  = @user.name
+                -if current_user
+                  - unless current_user==(@user)
+                    #follow_form
+                      - if current_user.following?(@user)
+                        = form_for(current_user.relationships.find_by_followed_id(@user), |
+                          html: { method: :delete }) do |f|                                |
+                          = f.submit "Following", class: "btn"
+                      - else
+                        = form_for(current_user.relationships.build(followed_id: @user.id)) do |f|
+                          %div= f.hidden_field :followed_id
+
+                          = f.submit "+ Follow", class: "btn btn-success"
+            %p.muted
+              =@user.bio
+          .span4
+            =render"shared/stats"
+          .clearfix
+
+    .page-header
+      %h5.no-margin-bottom
+        Tips
+    -@user_shots.in_groups_of(4,false) do |s|
+      .row
+        -s.each do |c| 
+          = render :partial => 'shared/shot_thumb', :locals => {:c => c}
+      = will_paginate @user_shots

@@ -1,0 +1,51 @@
+- if current_user.present?
+  .page-header.no-margin-bottom.half-margin-top
+    = link_to(new_shot_rebound_path(shot.id, :id => shot.id))do
+      %i.icon-circle-arrow-right 
+      Rebound
+    .pull-right
+      -if @shot.rebounds.count > 0
+        = link_to(shot_rebound_path(@shot, :id => @shot.id)) do
+          = @shot.rebounds.count
+          %i.icon-circle-arrow-right 
+  .page-header.no-margin-bottom.half-margin-top
+    -if current_user.voted_up_on? shot
+      = link_to({:action => 'un_like_shot', :id => shot.id})do
+        %span.liked
+          %i.icon-heart
+          You like
+    -else
+      = link_to({:action => 'like_shot', :id => shot.id})do
+        %i.icon-heart
+        Like?
+    .pull-right
+      -if @shot.likes.size > 0
+        =link_to(:action =>"likes", :controller=>"shots", :id=>@shot.id) do
+          =@shot.likes.size
+          %i.icon-heart
+      -else
+        =@shot.likes.size
+        %i.icon-heart
+
+  -if shot.user.id == current_user.id
+    .page-header.no-margin-bottom.half-margin-top
+      %a{"data-toggle" => "modal", :href => "#delete", :role => "button"}
+        %i.icon-trash 
+        Delete
+    .page-header.no-margin-bottom.half-margin-top
+      = link_to({:action => 'edit', :id => shot.id})do
+        %i.icon-cog
+        Edit
+  .page-header.no-margin-bottom.half-margin-top
+    %i.icon-tag
+    Tags
+  .page-header.no-margin-bottom.no-margin-top.half-padding-top.half-padding-bottom
+    -if shot.tags.count > 0
+      %ul.nav.nav-pills.nav-stacked.no-margin-bottom
+        - shot.tag_list.map do |s|
+          %li{:style=>"padding-top:0px; padding-bottom:0px;"}
+            =link_to (tag_path(s)), :style=>"padding:3px 0;" do 
+              =s 
+    -else
+      %p.muted.no-margin-bottom
+        No Tags

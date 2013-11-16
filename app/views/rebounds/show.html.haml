@@ -1,0 +1,28 @@
+.container.double-padding-top
+	.row
+		.span12
+			.margin-bottom
+				.media
+					= link_to (@shot.user), :class => "pull-left" do 
+						%img.media-object.avatar-lg{:src => "#{@shot.user.avatar.url(:medium)}"}
+					.media-body.margin-bottom
+						= link_to (@shot) do
+							%h3.media-heading 
+								= @shot.title
+						%p.muted
+							by:
+							= link_to (@shot.user) do
+								= @shot.user.name
+							= @shot.created_at.strftime("%B %d, %Y")
+						.clearfix
+		.span6
+			= render :partial => 'shared/shot_audio', :locals => {:shot => @shot}
+	%h5
+		=@shot.rebounds.count
+		Rebounds
+	%hr
+	-@rebounds.in_groups_of(4,false) do |s|
+		.row
+			-s.each do |c| 
+				= render :partial => 'shared/shot_thumb', :locals => {:c => c}
+		= will_paginate @rebounds 
