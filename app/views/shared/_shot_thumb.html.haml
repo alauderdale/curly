@@ -6,9 +6,23 @@
 			=link_to c do
 				=c.title
 		%p
+			%img.avatar-sm{:src=>"#{c.user.avatar.url(:medium)}"}
 			%sm
 				by
 				=link_to c.user do
 					= c.user.name
 		%p
 			=c.description.truncate(300)
+		%ul.inline
+			%li
+				%i.icon-heart
+				=c.likes.count
+			%li
+				%i.icon-comment
+				=c.comments.count
+			%li
+				%i.icon-tag
+					- c.tag_list.map do |c|
+						.label.label-inverse
+							=link_to (tag_path(c)), :style=>"color:white!important;" do 
+								=c

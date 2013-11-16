@@ -3,12 +3,23 @@
     .row
       .span12
         .double-margin-top
+        .media.margin-bottom
+          .page-header
+            .margin-bottom
+              =link_to @shot.user, :class=>"pull-left" do
+                %img.avatar-md.img-circle.margin-right{:src=>"#{@shot.user.avatar.url(:medium)}"}
+              .media-body
+                %h1.media-heading 
+                  = @shot.title
+                %h3
+                  =link_to @shot.user do
+                    =@shot.user.name
+    .row
+      .span12
         -if @shot.shot_image.present?
           %img.margin-bottom{:src=>"#{@shot.shot_image.url}"}
     .row
       .span5
-        %h1
-          = @shot.title
         %p.no-margin-bottom
           -if @shot.description.blank?
             %span.muted

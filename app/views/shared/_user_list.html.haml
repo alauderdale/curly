@@ -3,16 +3,22 @@
 		.span6
 			.media.margin-bottom
 				=link_to user, :class=>"pull-left" do
-					%img.avatar-lg{:src=>"#{user.avatar.url(:medium)}"}
-				.media-body
+					%img.avatar-lg.img-circle{:src=>"#{user.avatar.url(:medium)}"}
+				.media-body.margin-top
 					=link_to user do
 						%h3.media-heading 
 							=user.name
 						%p
 							= user.shots.count
-							shots
+							-if user.shots.count <= 1
+								tip
+							-else
+								tips
 							= user.followers.count
-							Followers
+							-if user.followers.count <= 1
+								Follower
+							-else
+								Followers
 			%p.muted
 				=user.bio
 		.span6

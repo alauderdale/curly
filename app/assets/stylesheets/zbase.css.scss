@@ -19,18 +19,15 @@ $light-gray-color:#eee;
   width: 20px;
   height:20px;
   height:auto;
-  @include border-radius(3px);
 }
 .avatar-med{
   width: 60px;
   height:auto;
   border:3px solid #bbb;
-  @include border-radius(200px);
 }
 .avatar-lg{
   width: 88px;
   height:auto;
-  @include border-radius(3px);
 }
 .nav{
   font-weight:bold;

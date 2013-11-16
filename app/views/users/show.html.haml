@@ -6,7 +6,7 @@
           .span8
             .media.margin-bottom
               = link_to (@user), :class => "pull-left" do 
-                %img.media-object.avatar-lg{:src => "#{@user.avatar.url(:medium)}"}
+                %img.media-object.avatar-lg.img-circle{:src => "#{@user.avatar.url(:medium)}"}
               .media-body
                 %h4.media-heading 
                   = @user.name
