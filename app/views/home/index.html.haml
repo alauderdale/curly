@@ -18,6 +18,7 @@
             %h3.no-margin-bottom
               Popular Tips
       .row
-        -@shots.each do |c| 
-          = render :partial => 'shared/shot_thumb', :locals => {:c => c}
-      = will_paginate @shots 
+        .span12
+          -@shots.each do |c| 
+            = render :partial => 'shared/shot_thumb', :locals => {:c => c}
+          = will_paginate @shots 

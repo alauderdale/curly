@@ -1,7 +1,14 @@
 %section.double-margin-bottom
   .container
     .row
+      .span12
+        .double-margin-top
+        -if @shot.shot_image.present?
+          %img.margin-bottom{:src=>"#{@shot.shot_image.url}"}
+    .row
       .span5
+        %h1
+          = @shot.title
         %p.no-margin-bottom
           -if @shot.description.blank?
             %span.muted

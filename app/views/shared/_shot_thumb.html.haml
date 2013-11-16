@@ -1,16 +1,14 @@
-.row
-	.container
-		.span12
-			.double-margin-bottom
-				-if c.shot_image.present?
-					%img.margin-bottom{:src => "#{c.shot_image.url}"}
-				%h2
-					=link_to c do
-						=c.title
-				%p
-					%sm
-						by
-						=link_to c.user do
-							= c.user.name
-				%p
-					=c.description.truncate(300)
+.page-header
+	.double-margin-bottom
+		-if c.shot_image.present?
+			%img.margin-bottom{:src => "#{c.shot_image.url}"}
+		%h2
+			=link_to c do
+				=c.title
+		%p
+			%sm
+				by
+				=link_to c.user do
+					= c.user.name
+		%p
+			=c.description.truncate(300)

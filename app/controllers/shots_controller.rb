@@ -63,7 +63,7 @@ class ShotsController < ApplicationController
     # Update the object
     if @shot.update_attributes(params[:shot])
       # If update succeeds, redirect to the list action
-      redirect_to shot_path, :notice => "Shot Updated"
+      redirect_to shot_path, :notice => "Tip Updated"
     else
       # If save fails, redisplay the form so user can fix problems
       render('edit')

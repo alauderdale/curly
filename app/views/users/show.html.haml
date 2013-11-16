@@ -27,12 +27,12 @@
           .span4
             =render"shared/stats"
           .clearfix
-
-    .page-header
-      %h5.no-margin-bottom
-        Tips
-    -@user_shots.in_groups_of(4,false) do |s|
-      .row
-        -s.each do |c| 
-          = render :partial => 'shared/shot_thumb', :locals => {:c => c}
-      = will_paginate @user_shots
+    .row
+      .span12
+        .page-header
+          %h5.no-margin-bottom
+            Tips
+        -@user_shots.in_groups_of(4,false) do |s|
+          -s.each do |c| 
+            = render :partial => 'shared/shot_thumb', :locals => {:c => c}
+          = will_paginate @user_shots
