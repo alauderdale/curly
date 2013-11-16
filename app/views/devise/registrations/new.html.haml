@@ -9,7 +9,7 @@
         = f.input :email, :required => true
         = f.input :password, :required => true
         = f.input :password_confirmation, :required => true
-        = f.input :bio, :placeholder =>"a little about you..."
+        = f.input :bio, :placeholder =>"a little about you...", :rows => 2
         %label
           User Avatar
         = f.file_field :avatar
